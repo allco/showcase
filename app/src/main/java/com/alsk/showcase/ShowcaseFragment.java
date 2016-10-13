@@ -43,6 +43,7 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.showcase_fragment_menu, menu);
     }
 
     @Override
