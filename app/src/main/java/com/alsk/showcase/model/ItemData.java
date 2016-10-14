@@ -9,7 +9,7 @@ public class ItemData {
     @NonNull
     private final String text;
 
-    ItemData(@NonNull String title, @NonNull String text) {
+    private ItemData(@NonNull String title, @NonNull String text) {
         this.title = title;
         this.text = text;
     }
