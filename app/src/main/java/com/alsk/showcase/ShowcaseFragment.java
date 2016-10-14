@@ -1,16 +1,14 @@
 package com.alsk.showcase;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.alsk.showcase.databinding.ShowcaseFragmentBinding;
 
 public class ShowcaseFragment extends Fragment {
 
@@ -24,20 +22,20 @@ public class ShowcaseFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
-    private ShowcaseFragmentBinding binding;
+    ShowcasePresenter presenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.showcase_fragment, container, false);
         setHasOptionsMenu(true);
-        return binding.getRoot();
+        presenter = ShowcasePresenter.newInstance(getActivity(), inflater, container);
+        return presenter.getRootView();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter.generateDummyData();
     }
 
     @Override
@@ -47,8 +45,13 @@ public class ShowcaseFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return presenter.onMenuItemClick(item);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        presenter = null;
     }
 }

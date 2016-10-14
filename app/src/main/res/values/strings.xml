@@ -3,4 +3,6 @@
     <string name="menu_title_case1">case 1</string>
     <string name="menu_title_case2">case 2</string>
     <string name="menu_title_case3">case 3</string>
+    <string name="item_dummy_title">Title item %d</string>
+    <string name="item_dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus molestie convallis ante sed vehicula. Nunc ut tempor erat, in blandit mauris.</string>
 </resources>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/showcase_fragment_menu_case1"
-        android:title="@string/menu_title_case1" />
+        android:title="@string/menu_title_case1"
+        />
     <item
         android:id="@+id/showcase_fragment_menu_case2"
-        android:title="@string/menu_title_case2" />
-
+        android:title="@string/menu_title_case2"
+        />
     <item
         android:id="@+id/showcase_fragment_menu_case3"
-        android:title="@string/menu_title_case3" />
+        android:title="@string/menu_title_case3"
+        />
 </menu>
