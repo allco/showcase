@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.alsk.showcase.model.ItemData"
+            />
+    </data>
+
+    <LinearLayout
+        style="@style/list_item_frame"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/thumb_size"
+            android:layout_height="@dimen/thumb_size"
+            android:layout_margin="@dimen/padding_8"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            style="@style/label_title"
+            android:gravity="center"
+            android:text="@{model.title}"
+            tools:text="@string/item_dummy_text"
+            />
+
+        <TextView
+            style="@style/label_text"
+            android:gravity="center"
+            android:text="@{model.text}"
+            tools:text="@string/item_dummy_text"
+            />
+
+    </LinearLayout>
+
+</layout>

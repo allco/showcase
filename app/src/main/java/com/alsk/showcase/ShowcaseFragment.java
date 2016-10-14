@@ -10,13 +10,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static com.alsk.showcase.ShowcasePresenter.MODE_1;
+
 public class ShowcaseFragment extends Fragment {
+
+    public static final String STATE_MODE_KEY = "STATE_MODE_KEY";
 
     @Deprecated
     public ShowcaseFragment() {
     }
 
     static public ShowcaseFragment newInstance() {
+        @SuppressWarnings("deprecation")
         ShowcaseFragment fragment = new ShowcaseFragment();
         fragment.setArguments(new Bundle());
         return fragment;
@@ -28,7 +33,8 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        presenter = ShowcasePresenter.newInstance(getActivity(), inflater, container);
+        //noinspection WrongConstant
+        presenter = ShowcasePresenter.newInstance(getActivity(), inflater, container, getArguments().getInt(STATE_MODE_KEY, MODE_1));
         return presenter.getRootView();
     }
 
@@ -52,6 +58,7 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        getArguments().putInt(STATE_MODE_KEY, presenter.getCurrentMode());
         presenter = null;
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.alsk.showcase.model.ItemData"
+            />
+    </data>
+
+    <RelativeLayout
+        style="@style/list_item_frame"
+        >
+
+        <ImageView
+            android:id="@+id/iv_image_mode1"
+            android:layout_width="@dimen/thumb_size"
+            android:layout_height="@dimen/thumb_size"
+            android:layout_marginRight="@dimen/padding_8"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/tv_title_mode1"
+            style="@style/label_title"
+            android:layout_toRightOf="@id/iv_image_mode1"
+            android:text="@{model.title}"
+            tools:text="@string/item_dummy_text"
+            />
+
+        <TextView
+            android:id="@+id/tv_text_mode1"
+            style="@style/label_text"
+            android:layout_alignLeft="@+id/tv_title_mode1"
+            android:layout_below="@+id/tv_title_mode1"
+            android:text="@{model.text}"
+            tools:text="@string/item_dummy_text"
+            />
+
+    </RelativeLayout>
+
+</layout>

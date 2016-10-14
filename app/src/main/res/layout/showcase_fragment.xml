@@ -12,7 +12,7 @@
 
         <variable
             name="adapter"
-            type="com.alsk.showcase.adapters.ShowcaseAdapter"
+            type="com.alsk.showcase.adapters.AbstractShowcaseAdapter"
             />
     </data>
 
