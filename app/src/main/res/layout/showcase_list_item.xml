@@ -4,7 +4,9 @@
     >
 
     <data>
-        <import type="com.alsk.showcase.adapters.ShowcaseAdapter"/>
+
+        <import type="com.alsk.showcase.ShowcasePresenter"/>
+
         <import type="android.view.View"/>
 
         <variable
@@ -21,28 +23,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_8"
         android:paddingLeft="@dimen/padding_16"
         android:paddingRight="@dimen/padding_16"
         android:paddingTop="@dimen/padding_8"
-        android:paddingBottom="@dimen/padding_8"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
         >
 
         <RelativeLayout
             android:id="@+id/fr_mode1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{mode == ShowcaseAdapter.MODE_1 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{mode == ShowcasePresenter.MODE_1 ? View.VISIBLE : View.GONE}"
             >
 
             <ImageView
                 android:id="@+id/iv_image_mode1"
                 android:layout_width="@dimen/thumb_size"
                 android:layout_height="@dimen/thumb_size"
-                android:scaleType="centerCrop"
                 android:layout_marginRight="@dimen/padding_8"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
                 />
 
@@ -50,7 +52,7 @@
                 android:id="@+id/tv_title_mode1"
                 style="@style/label_title"
                 android:layout_toRightOf="@id/iv_image_mode1"
-                android:text="@{mode == ShowcaseAdapter.MODE_1 ? model.title : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_1 ? model.title : null}"
                 tools:text="@string/item_dummy_text"
                 />
 
@@ -59,7 +61,7 @@
                 style="@style/label_text"
                 android:layout_alignLeft="@+id/tv_title_mode1"
                 android:layout_below="@+id/tv_title_mode1"
-                android:text="@{mode == ShowcaseAdapter.MODE_1 ? model.text : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_1 ? model.text : null}"
                 tools:text="@string/item_dummy_text"
                 />
 
@@ -69,7 +71,7 @@
             android:id="@+id/fr_mode2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{mode == ShowcaseAdapter.MODE_2 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{mode == ShowcasePresenter.MODE_2 ? View.VISIBLE : View.GONE}"
             >
 
             <ImageView
@@ -86,7 +88,7 @@
                 android:id="@+id/tv_text_mode2"
                 style="@style/label_text"
                 android:layout_toLeftOf="@id/iv_image_mode2"
-                android:text="@{mode == ShowcaseAdapter.MODE_2 ? model.text : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_2 ? model.text : null}"
                 tools:text="@string/item_dummy_text"
                 />
 
@@ -95,7 +97,7 @@
                 style="@style/label_title"
                 android:layout_alignRight="@+id/tv_text_mode2"
                 android:layout_below="@+id/tv_text_mode2"
-                android:text="@{mode == ShowcaseAdapter.MODE_2 ? model.title : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_2 ? model.title : null}"
                 tools:text="@string/item_dummy_text"
                 />
 
@@ -107,28 +109,28 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{mode == ShowcaseAdapter.MODE_3 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{mode == ShowcasePresenter.MODE_3 ? View.VISIBLE : View.GONE}"
             >
 
             <ImageView
                 android:layout_width="@dimen/thumb_size"
                 android:layout_height="@dimen/thumb_size"
+                android:layout_margin="@dimen/padding_8"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
-                android:layout_margin="@dimen/padding_8"
                 />
 
             <TextView
                 style="@style/label_title"
                 android:gravity="center"
-                android:text="@{mode == ShowcaseAdapter.MODE_3 ? model.title : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_3 ? model.title : null}"
                 tools:text="@string/item_dummy_text"
                 />
 
             <TextView
                 style="@style/label_text"
                 android:gravity="center"
-                android:text="@{mode == ShowcaseAdapter.MODE_3 ? model.text : null}"
+                android:text="@{mode == ShowcasePresenter.MODE_3 ? model.text : null}"
                 tools:text="@string/item_dummy_text"
                 />
 

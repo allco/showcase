@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.lang.ref.WeakReference;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class AbstractRecyclerViewAdapter<DATA, BINDING extends ViewDataBinding> extends RecyclerView.Adapter<BindableRecyclerViewHolder<BINDING>> {
 
     private ObservableList<DATA> data;

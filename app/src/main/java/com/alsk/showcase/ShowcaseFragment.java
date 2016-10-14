@@ -17,6 +17,7 @@ public class ShowcaseFragment extends Fragment {
     }
 
     static public ShowcaseFragment newInstance() {
+        @SuppressWarnings("deprecation")
         ShowcaseFragment fragment = new ShowcaseFragment();
         fragment.setArguments(new Bundle());
         return fragment;
