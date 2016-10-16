@@ -1,11 +1,12 @@
 package com.alsk.showcase.adapters;
 
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 
-class BindableRecyclerViewHolder<DATABINDING extends ViewDataBinding> extends RecyclerView.ViewHolder {
+import com.alsk.showcase.binding.AbstractListItemBindingWrapper;
 
-    private DATABINDING dataBinding;
+class BindableRecyclerViewHolder<DATABINDING extends AbstractListItemBindingWrapper> extends RecyclerView.ViewHolder {
+
+    private final DATABINDING dataBinding;
 
     BindableRecyclerViewHolder(DATABINDING dataBinding) {
         super(dataBinding.getRoot());
