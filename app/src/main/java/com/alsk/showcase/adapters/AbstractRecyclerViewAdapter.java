@@ -1,17 +1,14 @@
 package com.alsk.showcase.adapters;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ObservableList;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
+
+import com.alsk.showcase.binding.AbstractListItemBindingWrapper;
 
 import java.lang.ref.WeakReference;
 
-public abstract class AbstractRecyclerViewAdapter<DATA, BINDING extends ViewDataBinding> extends RecyclerView.Adapter<BindableRecyclerViewHolder<BINDING>> {
+public abstract class AbstractRecyclerViewAdapter<DATA, BINDING extends AbstractListItemBindingWrapper> extends RecyclerView.Adapter<BindableRecyclerViewHolder<BINDING>> {
 
     private ObservableList<DATA> data;
 
@@ -21,27 +18,17 @@ public abstract class AbstractRecyclerViewAdapter<DATA, BINDING extends ViewData
         notifyDataSetChanged();
     }
 
-    @Override
-    public BindableRecyclerViewHolder<BINDING> onCreateViewHolder(ViewGroup parent, int viewType) {
-        BINDING binding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.getContext()),
-                getItemLayout(), parent,
-                false);
-        return new BindableRecyclerViewHolder<>(binding);
-    }
-
-    @LayoutRes
-    protected abstract int getItemLayout();
-
+    @SuppressWarnings("unused")
     public void addItem(DATA item) {
         data.add(item);
     }
 
+    @SuppressWarnings("unused")
     public void removeItem(DATA item) {
         data.remove(item);
     }
 
-    public DATA getItem(int position) {
+    DATA getItem(int position) {
         return data.get(position);
     }
 
@@ -50,7 +37,7 @@ public abstract class AbstractRecyclerViewAdapter<DATA, BINDING extends ViewData
         return data.size();
     }
 
-    private static <DATA, BINDING extends ViewDataBinding, VIEWMODEL> ObservableList.OnListChangedCallback<ObservableList<DATA>> createChangesListener(final WeakReference<AbstractRecyclerViewAdapter<DATA, BINDING>> adapterRef) {
+    private static <DATA, BINDING extends AbstractListItemBindingWrapper> ObservableList.OnListChangedCallback<ObservableList<DATA>> createChangesListener(final WeakReference<AbstractRecyclerViewAdapter<DATA, BINDING>> adapterRef) {
         return new ObservableList.OnListChangedCallback<ObservableList<DATA>>() {
             @Override
             public void onChanged(ObservableList<DATA> sender) {

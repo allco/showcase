@@ -6,14 +6,21 @@
     <data>
         <variable
             name="model"
-            type="com.alsk.showcase.ShowcaseViewModel"
+            type="com.alsk.showcase.viewmodel.ShowcaseViewModel"
             />
     </data>
 
-    <android.support.v7.widget.RecyclerView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:model="@{model}"
-        />
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:model="@{model}"
+            />
+
+    </FrameLayout>
 
 </layout>

@@ -1,6 +1,5 @@
 package com.alsk.showcase;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,20 +10,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alsk.showcase.databinding.ShowcaseFragmentBinding;
+import com.alsk.showcase.binding.ShowcaseFragmentBindingWrapper;
+import com.alsk.showcase.ioc.DaggerShowcaseComponent;
+import com.alsk.showcase.viewmodel.ShowcaseViewModel;
 
-import static com.alsk.showcase.ShowcaseViewModel.MODE_1;
-import static com.alsk.showcase.ShowcaseViewModel.MODE_2;
-import static com.alsk.showcase.ShowcaseViewModel.MODE_3;
+import javax.inject.Inject;
+
+import static com.alsk.showcase.viewmodel.ShowcaseViewModelImpl.MODE_1;
+import static com.alsk.showcase.viewmodel.ShowcaseViewModelImpl.MODE_2;
+import static com.alsk.showcase.viewmodel.ShowcaseViewModelImpl.MODE_3;
 
 public class ShowcaseFragment extends Fragment {
 
-    public static final String STATE_MODE_KEY = "STATE_MODE_KEY";
-    private ShowcaseViewModel viewModel;
-    private ShowcaseFragmentBinding binding;
+    private static final String STATE_MODE_KEY = "STATE_MODE_KEY";
+
+    @Inject
+    ShowcaseViewModel viewModel;
+
+    @Inject
+    ShowcaseFragmentBindingWrapper bindingWrapper;
 
     @Deprecated
     public ShowcaseFragment() {
+        DaggerShowcaseComponent.builder().build().inject(this);
     }
 
     static public ShowcaseFragment newInstance() {
@@ -39,16 +47,15 @@ public class ShowcaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         //noinspection WrongConstant
-        viewModel = ShowcaseViewModel.newInstance(getArguments().getInt(STATE_MODE_KEY, MODE_1));
-        binding = DataBindingUtil.inflate(inflater, R.layout.showcase_fragment, container, false);
-        return binding.getRoot();
+        viewModel.setMode(getArguments().getInt(STATE_MODE_KEY, MODE_1));
+        return bindingWrapper.init(inflater, container);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel.generateDummyData(getContext());
-        binding.setModel(viewModel);
+        bindingWrapper.setModel(viewModel);
     }
 
     @Override
@@ -71,7 +78,7 @@ public class ShowcaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         getArguments().putInt(STATE_MODE_KEY, viewModel.getMode());
+        bindingWrapper = null;
         viewModel = null;
-        binding = null;
     }
 }
