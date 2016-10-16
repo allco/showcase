@@ -4,23 +4,16 @@
     >
 
     <data>
-
         <variable
-            name="mode"
-            type="int"
-            />
-
-        <variable
-            name="adapter"
-            type="com.alsk.showcase.adapters.AbstractShowcaseAdapter"
+            name="model"
+            type="com.alsk.showcase.ShowcaseViewModel"
             />
     </data>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:adapter="@{adapter}"
-        app:mode="@{mode}"
+        app:model="@{model}"
         />
 
 </layout>

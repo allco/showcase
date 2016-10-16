@@ -1,5 +1,6 @@
 package com.alsk.showcase;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import static com.alsk.showcase.ShowcasePresenter.MODE_1;
+import com.alsk.showcase.databinding.ShowcaseFragmentBinding;
+
+import static com.alsk.showcase.ShowcaseViewModel.MODE_1;
+import static com.alsk.showcase.ShowcaseViewModel.MODE_2;
+import static com.alsk.showcase.ShowcaseViewModel.MODE_3;
 
 public class ShowcaseFragment extends Fragment {
 
     public static final String STATE_MODE_KEY = "STATE_MODE_KEY";
+    private ShowcaseViewModel viewModel;
+    private ShowcaseFragmentBinding binding;
 
     @Deprecated
     public ShowcaseFragment() {
@@ -27,21 +34,21 @@ public class ShowcaseFragment extends Fragment {
         return fragment;
     }
 
-    ShowcasePresenter presenter;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         //noinspection WrongConstant
-        presenter = ShowcasePresenter.newInstance(getActivity(), inflater, container, getArguments().getInt(STATE_MODE_KEY, MODE_1));
-        return presenter.getRootView();
+        viewModel = ShowcaseViewModel.newInstance(getArguments().getInt(STATE_MODE_KEY, MODE_1));
+        binding = DataBindingUtil.inflate(inflater, R.layout.showcase_fragment, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.generateDummyData();
+        viewModel.generateDummyData(getContext());
+        binding.setModel(viewModel);
     }
 
     @Override
@@ -52,13 +59,19 @@ public class ShowcaseFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return presenter.onMenuItemClick(item);
+        switch (item.getItemId()) {
+            case R.id.showcase_fragment_menu_case1: viewModel.setMode(MODE_1); return true;
+            case R.id.showcase_fragment_menu_case2: viewModel.setMode(MODE_2); return true;
+            case R.id.showcase_fragment_menu_case3: viewModel.setMode(MODE_3); return true;
+        }
+        return false;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        getArguments().putInt(STATE_MODE_KEY, presenter.getCurrentMode());
-        presenter = null;
+        getArguments().putInt(STATE_MODE_KEY, viewModel.getMode());
+        viewModel = null;
+        binding = null;
     }
 }

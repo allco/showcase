@@ -2,8 +2,9 @@ package com.alsk.showcase.adapters;
 
 import com.alsk.showcase.R;
 import com.alsk.showcase.databinding.ShowcaseListItemCase2Binding;
+import com.alsk.showcase.model.ItemData;
 
-public class Showcase2Adapter extends AbstractShowcaseAdapter<ShowcaseListItemCase2Binding> {
+public class Showcase2Adapter extends AbstractRecyclerViewAdapter<ItemData, ShowcaseListItemCase2Binding> {
 
     @Override
     protected int getItemLayout() {
