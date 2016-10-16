@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import static com.alsk.showcase.ShowcasePresenter.MODE_1;
+import static com.alsk.showcase.ShowcasePresenter.MODE_2;
+import static com.alsk.showcase.ShowcasePresenter.MODE_3;
 
 public class ShowcaseFragment extends Fragment {
 
@@ -41,7 +43,7 @@ public class ShowcaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.generateDummyData();
+        presenter.generateDummyData(getContext());
     }
 
     @Override
@@ -52,7 +54,12 @@ public class ShowcaseFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return presenter.onMenuItemClick(item);
+        switch (item.getItemId()) {
+            case R.id.showcase_fragment_menu_case1: presenter.setMode(MODE_1); return true;
+            case R.id.showcase_fragment_menu_case2: presenter.setMode(MODE_2); return true;
+            case R.id.showcase_fragment_menu_case3: presenter.setMode(MODE_3); return true;
+        }
+        return false;
     }
 
     @Override
