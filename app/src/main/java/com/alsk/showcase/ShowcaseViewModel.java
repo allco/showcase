@@ -24,7 +24,6 @@ public class ShowcaseViewModel implements Observable {
     public static final int MODE_1 = 1;
     public static final int MODE_2 = 2;
     public static final int MODE_3 = 3;
-    static final int ITEMS_DEFAULT_COUNT = 10;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({MODE_1, MODE_2, MODE_3})

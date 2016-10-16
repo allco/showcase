@@ -10,6 +10,8 @@ import com.alsk.showcase.model.ItemData;
 
 public class ShowcaseModel extends AsyncTask<Void,ItemData,Void> {
 
+    static final int ITEMS_DEFAULT_COUNT = 10;
+
     private final Context context;
     private final ObservableList<ItemData> listItems;
 
@@ -27,7 +29,9 @@ public class ShowcaseModel extends AsyncTask<Void,ItemData,Void> {
     @Override
     protected void onProgressUpdate(ItemData... values) {
         super.onProgressUpdate(values);
-        listItems.add(values[0]);
+        // insert item at arbitrary place
+        int index = (int) Math.max(0, Math.round(Math.random() * (listItems.size() - 1)));
+        listItems.add(index, values[0]);
     }
 
     @MainThread
@@ -39,7 +43,7 @@ public class ShowcaseModel extends AsyncTask<Void,ItemData,Void> {
     @WorkerThread
     @Override
     protected Void doInBackground(Void[] params) {
-        for (int i = 0; i < ShowcaseViewModel.ITEMS_DEFAULT_COUNT; i++) {
+        for (int i = 0; i < ITEMS_DEFAULT_COUNT; i++) {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
